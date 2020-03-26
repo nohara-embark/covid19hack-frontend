@@ -3,13 +3,7 @@ import { Button, Col, Container, FormGroup, Input, Row } from "reactstrap";
 
 /*eslint-disable*/
 import React from "react";
-
-function handleJoin() {
-  const name = document.getElementById("name").value;
-  const phoneNumber = document.getElementById("phoneNumber").value;
-  alert(`${name}, ${phoneNumber}`);
-  // fetch post to endpoint
-}
+import { fetchPost } from "../../services/fetch";
 
 let pageHeader = React.createRef();
 class IndexHeader extends React.Component {
@@ -29,6 +23,20 @@ class IndexHeader extends React.Component {
         window.removeEventListener("scroll", updateScroll);
       };
     }
+  };
+
+  handleJoin = async () => {
+    const name = document.getElementById("name").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+
+    // todo: validation
+
+    const result = await fetchPost("https://rl1g1tkdy4.execute-api.us-east-1.amazonaws.com/registerUser", {
+      name,
+      phoneNumber
+    });
+
+    console.log(result);
   };
 
   render() {
@@ -51,7 +59,7 @@ class IndexHeader extends React.Component {
               ></img>
               <h1 className="h1-seo">Next Sweat</h1>
               <h3>
-                Join the challenge. Do a 3 minute workout and nominate your
+                Take the challenge. Do a 3 minute workout and nominate your
                 friends.
               </h3>
 
@@ -60,11 +68,7 @@ class IndexHeader extends React.Component {
 
                 <Col lg="4" sm="12">
                   <FormGroup>
-                    <Input
-                        placeholder="Name"
-                        type="text"
-                        id="name"
-                    ></Input>
+                    <Input placeholder="Name" type="text" id="name"></Input>
                   </FormGroup>
                 </Col>
 
@@ -77,9 +81,9 @@ class IndexHeader extends React.Component {
                 <Col lg="4" sm="12">
                   <FormGroup>
                     <Input
-                        placeholder="Phone number"
-                        type="number"
-                        id="phoneNumber"
+                      placeholder="Phone number"
+                      type="number"
+                      id="phoneNumber"
                     ></Input>
                   </FormGroup>
                 </Col>
@@ -92,17 +96,16 @@ class IndexHeader extends React.Component {
 
                 <Col lg="4" sm="12">
                   <Button
-                      className="btn-round btn-block"
-                      color="info"
-                      type="button"
-                      onClick={handleJoin}
+                    className="btn-round btn-block"
+                    color="info"
+                    type="button"
+                    onClick={this.handleJoin}
                   >
                     Join
                   </Button>
                 </Col>
 
                 <Col lg="4" sm="0"></Col>
-
               </Row>
 
               <br />
