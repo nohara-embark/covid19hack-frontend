@@ -45,7 +45,7 @@ class HashtagFeed extends React.Component {
 
         <div>
           <h1 className="text-center title-margin">
-            #NextSweatCovid19
+            #NextActCovid19
           </h1>
         </div>
 

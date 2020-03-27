@@ -56,7 +56,7 @@ function IndexNavbar() {
             <NavbarBrand
               id="navbar-brand"
             >
-              Next Sweat
+              Next Act
             </NavbarBrand>
             <button
               className="navbar-toggler navbar-toggler"

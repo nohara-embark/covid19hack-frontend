@@ -110,7 +110,7 @@ class IndexHeader extends React.Component {
                 className="n-logo"
                 src={require("assets/img/now-logo.png")}
               ></img>
-              <h1 className="h1-seo">Next Sweat</h1>
+              <h1 className="h1-seo">Next Act</h1>
               <h3>
                 Take the challenge. Do a 3 minute workout and nominate your
                 friends.
@@ -178,7 +178,7 @@ class IndexHeader extends React.Component {
 
               <br />
 
-              <h3>#NextSweatCovid19</h3>
+              <h3>#NextActCovid19</h3>
             </div>
           </Container>
         </div>
