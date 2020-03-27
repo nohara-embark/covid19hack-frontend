@@ -64,6 +64,8 @@ class IndexHeader extends React.Component {
       }
     );
 
+    console.log(result);
+
     if (result !== 200) {
       this.showAlert(
         typeError,

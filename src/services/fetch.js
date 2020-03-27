@@ -1,5 +1,5 @@
 export async function fetchPost(url, data) {
-  return fetch(url, {
+  return fetch(`https://cors-anywhere.herokuapp.com/${url}`, {
     method: "POST",
     body: JSON.stringify(data)
   })
