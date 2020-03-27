@@ -61,4 +61,24 @@
 @import "now-ui-kit/responsive";
 
 // React
-@import "react/react-differences"
+@import "react/react-differences";
+
+.base-alert {
+  padding: 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.alert-style-error {
+  @extend .base-alert;
+  background-color: #FEF9F9 !important;
+  border: 1px solid #F15B5C !important;
+  color: #B21010 !important;
+}
+
+.alert-style-success {
+  @extend .base-alert;
+  background-color: #F6FCE9 !important;
+  border: 1px solid #95D600 !important;
+  color: #446100 !important;
+}

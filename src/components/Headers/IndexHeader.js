@@ -1,12 +1,29 @@
 // reactstrap components
-import { Button, Col, Container, FormGroup, Input, Row } from "reactstrap";
+import {
+  Alert,
+  Button,
+  Col,
+  Container,
+  FormGroup,
+  Input,
+  Row
+} from "reactstrap";
 
 /*eslint-disable*/
 import React from "react";
 import { fetchPost } from "../../services/fetch";
 
+const typeError = "error";
+const typeSuccess = "success";
+
 let pageHeader = React.createRef();
 class IndexHeader extends React.Component {
+  state = {
+    errorType: typeError,
+    errorMessage: "",
+    errorIsVisible: false
+  };
+
   componentDidMount = () => {
     this.handleResize();
   };
@@ -29,14 +46,50 @@ class IndexHeader extends React.Component {
     const name = document.getElementById("name").value;
     const phoneNumber = document.getElementById("phoneNumber").value;
 
-    // todo: validation
+    if (name.length === 0) {
+      this.showAlert(typeError, "Please add your name");
+      return;
+    }
 
-    const result = await fetchPost("https://rl1g1tkdy4.execute-api.us-east-1.amazonaws.com/registerUser", {
-      name,
-      phoneNumber
-    });
+    if (!phoneNumber.match(/^\d{10}$/)) {
+      this.showAlert(typeError, "Number must be 10 digits.");
+      return;
+    }
 
-    console.log(result);
+    const result = await fetchPost(
+      "https://rl1g1tkdy4.execute-api.us-east-1.amazonaws.com/registerUser",
+      {
+        name,
+        phoneNumber
+      }
+    );
+
+    if (result !== 200) {
+      this.showAlert(
+        typeError,
+        "Your phone number has already been registered."
+      );
+      return;
+    }
+
+    this.showAlert("success", "You're in! We will text you shortly.");
+    this.clearInputs();
+  };
+
+  showAlert = (type, message) => {
+    this.setState(
+      { errorType: type, errorIsVisible: true, errorMessage: message },
+      () => {
+        window.setTimeout(() => {
+          this.setState({ errorIsVisible: false });
+        }, 3500);
+      }
+    );
+  };
+
+  clearInputs = () => {
+    document.getElementById("name").value = "";
+    document.getElementById("phoneNumber").value = "";
   };
 
   render() {
@@ -62,6 +115,21 @@ class IndexHeader extends React.Component {
                 Take the challenge. Do a 3 minute workout and nominate your
                 friends.
               </h3>
+
+              {this.state.errorIsVisible && (
+                <Row>
+                  <Col lg="4" sm="0"></Col>
+                  <Col lg="4" sm="0">
+                    <Alert
+                      color="danger"
+                      className={`alert-style-${this.state.errorType}`}
+                    >
+                      {this.state.errorMessage}
+                    </Alert>
+                  </Col>
+                  <Col lg="4" sm="0"></Col>
+                </Row>
+              )}
 
               <Row>
                 <Col lg="4" sm="0"></Col>

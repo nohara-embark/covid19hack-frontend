@@ -1,13 +1,10 @@
 export async function fetchPost(url, data) {
-  return fetch(`https://cors-anywhere.herokuapp.com/${url}`, {
+  return fetch(url, {
     method: "POST",
     body: JSON.stringify(data)
   })
     .then(response => {
-      return response.json();
-    })
-    .then(data => {
-      return data;
+      return response.status;
     })
     .catch(err => {
       console.log(err);
