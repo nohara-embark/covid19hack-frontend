@@ -112,7 +112,7 @@ class IndexHeader extends React.Component {
               ></img>
               <h1 className="h1-seo">Next Act</h1>
               <h3>
-                Take the challenge. Do a 3 minute workout and nominate your
+                Take the challenge. Do a 3 minute task and nominate your
                 friends.
               </h3>
 
