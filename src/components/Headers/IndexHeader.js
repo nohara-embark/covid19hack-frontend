@@ -114,8 +114,7 @@ class IndexHeader extends React.Component {
               ></img>
               <h1 className="h1-seo">Next Act</h1>
               <h3>
-                Take the challenge. Do a 3 minute task and nominate your
-                friends.
+                Take the challenge. Do a quick task to better yourself and the world. Nominate your friends to do the same.
               </h3>
 
               {this.state.errorIsVisible && (
