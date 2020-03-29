@@ -1,8 +1,8 @@
-import {Col, Container, Row} from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 
 import React from "react";
 
-const hashtag = "puppy";
+const hashtag = "nextactcovid19";
 
 class HashtagFeed extends React.Component {
   state = {
@@ -21,8 +21,10 @@ class HashtagFeed extends React.Component {
       .then(data => {
         let dataSources = [];
 
-        const numberOfOptions = data.graphql.hashtag.edge_hashtag_to_media.edges.length;
-        const numberOfInstagramImages = numberOfOptions >= 12 ? 12 : numberOfOptions;
+        const numberOfOptions =
+          data.graphql.hashtag.edge_hashtag_to_media.edges.length;
+        const numberOfInstagramImages =
+          numberOfOptions >= 12 ? 12 : numberOfOptions;
 
         for (let i = 0; i < numberOfInstagramImages; i++) {
           const node = data.graphql.hashtag.edge_hashtag_to_media.edges[i].node;
@@ -42,11 +44,8 @@ class HashtagFeed extends React.Component {
   render() {
     return (
       <div>
-
         <div>
-          <h1 className="text-center title-margin">
-            #NextActCovid19
-          </h1>
+          <h1 className="text-center title-margin">#NextActCovid19</h1>
         </div>
 
         <div
@@ -56,14 +55,19 @@ class HashtagFeed extends React.Component {
           <Row className="row-fix">
             {this.state.instagramPhotoUrls.map((url, index) => {
               return (
-                  <Col lg="3" sm="12" key={index} className="image-item">
+                <Col lg="3" sm="12" key={index} className="image-item">
+                  <a
+                    href="https://www.instagram.com/nextactcovid19"
+                    target="_blank"
+                  >
                     <img
-                        alt="picture"
-                        src={url}
-                        className="img-fluid instagram-image"
+                      alt="picture"
+                      src={url}
+                      className="img-fluid instagram-image"
                     />
-                  </Col>
-            )
+                  </a>
+                </Col>
+              );
             })}
           </Row>
         </div>
